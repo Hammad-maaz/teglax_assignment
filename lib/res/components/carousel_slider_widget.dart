@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:teglax_assignment/res/utils/colors.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
   final List<String> images;
@@ -18,10 +19,10 @@ class CarouselSliderWidget extends StatelessWidget {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.symmetric(horizontal: 5.0),
-              decoration: const BoxDecoration(
-                color: Colors.grey,
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 1.0),
+              decoration: BoxDecoration(
+                color: AppColors.black.withValues(alpha: .1),
               ),
               child: Image.network(
                 imageUrl,

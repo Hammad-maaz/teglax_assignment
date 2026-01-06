@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:teglax_assignment/models/product_details_model/product_details_model.dart';
 import 'package:teglax_assignment/res/utils/colors.dart';
-import 'package:teglax_assignment/res/widgets/carousel_slider_widget.dart';
-import 'package:teglax_assignment/res/widgets/rating.dart';
+import 'package:teglax_assignment/res/components/carousel_slider_widget.dart';
+import 'package:teglax_assignment/res/components/rating.dart';
 import 'package:teglax_assignment/view_model/product_details_view_model.dart';
 
 class ProductDetails extends StatelessWidget {
@@ -34,7 +34,7 @@ class ProductDetails extends StatelessWidget {
                 return Center(
                   child: Text(
                     'Error: ${snap.error}',
-                    style: const TextStyle(color: Colors.red),
+                    style: TextStyle(color: AppColors.red),
                   ),
                 );
               }
@@ -53,36 +53,81 @@ class ProductDetails extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CarouselSliderWidget(images: data.images),
+                      Container(
+                        margin: const EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.black.withValues(alpha: .1),
+                              blurRadius: 8.0,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: CarouselSliderWidget(images: data.images),
+                        ),
+                      ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Title and Rating
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Text(
                                     '${data.title} (${data.category})',
-                                    style: const TextStyle(
-                                      fontSize: 20,
+                                    style: TextStyle(
+                                      fontSize: 24,
                                       fontWeight: FontWeight.bold,
+                                      color:
+                                          AppColors.black.withValues(alpha: .8),
                                     ),
                                   ),
                                 ),
+                                const SizedBox(width: 8),
                                 RatingWidget(rating: data.rating),
                               ],
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 8),
+                            // Price
                             Text(
-                              data.description,
-                              style: const TextStyle(
-                                fontSize: 16,
+                              '\$${data.price.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.green,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            // Description in a card
+                            Card(
+                              elevation: 2.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  data.description,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color:
+                                        AppColors.black.withValues(alpha: .7),
+                                    height: 1.5,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
+                      const SizedBox(height: 16),
                     ],
                   ),
                 );
