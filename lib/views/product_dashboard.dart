@@ -14,26 +14,26 @@ class Dashboard extends GetView<ProductViewModel> {
       appBar: AppBar(
         title: const Text('Dashboard'),
         backgroundColor: AppColors.black.withValues(alpha: .1),
-        actions: [
-          Obx(() {
-            return IconButton(
-              icon: Icon(
-                controller.isDarkMode.value
-                    ? Icons.dark_mode
-                    : Icons.light_mode,
-              ),
-              onPressed: () {
-                controller.isDarkMode.value = !controller.isDarkMode.value;
+        // actions: [
+        //   Obx(() {
+        //     return IconButton(
+        //       icon: Icon(
+        //         controller.isDarkMode.value
+        //             ? Icons.dark_mode
+        //             : Icons.light_mode,
+        //       ),
+        //       onPressed: () {
+        //         controller.isDarkMode.value = !controller.isDarkMode.value;
 
-                if (controller.isDarkMode.value) {
-                  Get.changeTheme(ThemeData.dark());
-                } else {
-                  Get.changeTheme(ThemeData.light());
-                }
-              },
-            );
-          }),
-        ],
+        //         if (controller.isDarkMode.value) {
+        //           Get.changeTheme(ThemeData.dark());
+        //         } else {
+        //           Get.changeTheme(ThemeData.light());
+        //         }
+        //       },
+        //     );
+        //   }),
+        // ],
       ),
       body: Column(
         children: [
