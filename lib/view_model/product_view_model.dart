@@ -10,6 +10,7 @@ class ProductViewModel extends GetxController {
   RxList<CategoryModel> categories = <CategoryModel>[].obs;
   RxString selectedCategory = ''.obs;
   Rx<TextEditingController> searchController = TextEditingController().obs;
+  RxBool isDarkMode = false.obs;
 
   @override
   void onInit() {
